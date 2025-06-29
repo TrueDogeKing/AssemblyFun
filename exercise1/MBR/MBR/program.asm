@@ -2,9 +2,6 @@
 .model flat
 
 
-extern  _ExitProcess@4 : proc
-extern _MessageBoxW@16 : proc
-extern _MessageBoxA@16 : proc
 Comment |
 Write a subroutine in 32-bit x86 assembly, designed to be called from a C program.
 The prototype of the "_numerPartycjiAktywnej"
