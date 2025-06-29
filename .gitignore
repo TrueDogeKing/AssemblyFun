@@ -1,0 +1,109 @@
+# === C/C++ build files ===
+
+# Object files
+*.o
+*.obj
+
+# Executable files
+*.exe
+*.out
+*.app
+*.dll
+*.so
+*.dylib
+
+# Debug files
+*.dSYM/
+*.stackdump
+*.map
+
+# Build directories
+/build/
+/bin/
+/lib/
+/dist/
+
+# CMake and Make
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+compile_commands.json
+
+# Code::Blocks
+*.depend
+*.layout
+*.cbp
+
+# Visual Studio
+*.sdf
+*.suo
+*.VC.db
+*.vcxproj*
+*.ncb
+*.aps
+*.user
+*.opensdf
+
+# CLion and JetBrains
+.idea/
+cmake-build-*/
+
+# Logs, backup, temp
+*.log
+*~
+*.swp
+*.bak
+*.tmp
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# === Assembly-related files ===
+
+# Assembler object files
+*.o
+*.obj
+
+# Listing and intermediate files
+*.lst
+*.lss
+*.map
+*.sym
+*.tmp
+*.bin
+*.hex
+*.elf
+
+# Dump and disassembly files
+*.dmp
+*.dump
+*.srec
+*.s19
+
+# Linker script (ignore only if generated)
+*.ld
+
+# Assembler-specific IDEs (e.g., MPLAB, Keil, etc.)
+*.crf
+*.d
+*.dep
+*.map
+*.lst
+*.axf
+*.htm
+*.iex
+*.lnp
+*.plg
+*.sbr
+*.tsk
+*.uvopt*
+*.uvproj*
+
+# Visual Studio hidden folder
+.vs/
+
+# Ignore all Debug folders recursively
+**/Debug/
+
