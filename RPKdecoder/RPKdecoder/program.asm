@@ -75,11 +75,13 @@ _get_RPK PROC
     mov esi, [ebp+8]     ; ESI = pointer to PK string
     xor eax, eax
     mov ecx, 32
+
 clear_loop:
-    mov [ebp+ecx-1], al
+    mov [ebp+ecx-33], al
     loop clear_loop
 
     xor ecx, ecx         ; index of base-24 digit
+    push ecx
 
 
 next_char:
@@ -98,17 +100,17 @@ next_char:
 
 
     ; multiply number by 24
-    lea ebx, [ebp+16]         ; pointer to input buf1
+    lea ebx, [ebp-32]         ; pointer to input buf1
     push ebx
-    lea ebx, [ebp]      ; pointer to output buf2
+    lea ebx, [ebp-16]      ; pointer to output buf2
     push ebx
     call _mul_24
     add esp, 8
 
     push esi
 
-    lea edi, [ebp]
-    lea esi, [ebp+16]
+    lea edi, [ebp-16]
+    lea esi, [ebp-32]
     call _copyEsiToEdi
 
     pop esi
@@ -119,15 +121,15 @@ next_char:
     mov ecx, 0
     xor edx, edx
 add_digit:
-    mov al, [ebp+ecx]
+    mov al, [ebp+ecx-16]
     add al, bl
-    mov [ebp+ecx], al
-    cmp al, 24
+    mov [ebp+ecx-16],byte ptr al
+    cmp al, 0FFh
     jb done_add
     sub al, 24
-    mov [ebp+ecx], al
+    mov [ebp+ecx-16],byte ptr al
     inc bl
-    inc ecx
+    dec ecx
     jmp add_digit
 done_add:
     jmp next_char
@@ -135,15 +137,15 @@ done_add:
 done_parsing:
     ; Extract bytes 5–8 in big-endian
     ; Bytes: edi[5], edi[6], edi[7], edi[8] → EAX = (b5 << 24 | b6 << 16 | b7 << 8 | b8)
-    movzx eax, byte ptr [ebp+5]
+    movzx eax, byte ptr [ebp+5-16]
     shl eax, 24
-    movzx ebx, byte ptr [ebp+6]
+    movzx ebx, byte ptr [ebp+6-16]
     shl ebx, 16
     or eax, ebx
-    movzx ebx, byte ptr [ebp+7]
+    movzx ebx, byte ptr [ebp+7-16]
     shl ebx, 8
     or eax, ebx
-    movzx ebx, byte ptr [ebp+8]
+    movzx ebx, byte ptr [ebp+8-16]
     or eax, ebx
 
     add esp, 32          ; cleanup 128-bit buffer
