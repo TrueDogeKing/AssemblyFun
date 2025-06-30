@@ -3,20 +3,22 @@
 
 
 Comment |
-void _shl_128(__m128* a, char n)
+void _mul_24(__m128 *in, __m128 *out)
 
  Description:
- This 32-bit assembly subroutine performs a logical left shift
- of a 128-bit unsigned integer (stored as four 32-bit parts)
- by n bits. The shift is done entirely using 32-bit registers.
+ This 32-bit assembly subroutine multiplies a 128-bit unsigned integer by 24
+ and stores the result in the `out` parameter.
 
- Notes:
- - No 64-bit registers or MMX/SSE instructions are used.
- - No static data segment is used.
- - The number is shifted in-place inside the struct pointed to by a.
+ - The input 128-bit number is provided through the pointer `in`
+ - The output is written to the memory pointed to by `out`
+ - The input must remain unchanged
+ - No static data segment is used
+ - No 64-bit or SSE/MMX registers or instructions are used
+ - The multiplication is performed using shifts and addition:
+     (x * 24) = (x << 3) + (x << 4) = x * 8 + x * 16
 
- Registers used: eax, ebx, ecx, edx, esi
- Calling convention: __cdecl (parameters on stack)
+ Registers used: eax, ebx, ecx, edx, esi, edi
+ Calling convention: __cdecl (parameters passed on stack)
 
 | 
 public _mul_24
