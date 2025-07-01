@@ -55,7 +55,7 @@ length_loop:
         jmp length_loop
 
 length_done:
-        dec edx
+
     
 
         xor eax,eax
@@ -63,10 +63,10 @@ outer_loop:
     mov ecx, edx            ; edx = inner loop index i = 0
 
 inner_loop:
-    mov bx,word ptr [esi+2*ecx]
+    mov bx,word ptr [esi+2*ecx-2]
     cmp bx,0
-    je end_search
-    cmp bx,word ptr [edi+2*ecx]
+    je not_found
+    cmp bx,word ptr [edi+2*ecx-2]
     jne next_outer
     loop inner_loop
     ;calculate the esi now
@@ -77,6 +77,8 @@ next_outer:
     inc esi
     inc eax
     jmp outer_loop
+not_found:
+    mov eax,-1
 
 end_search:
     pop edx
