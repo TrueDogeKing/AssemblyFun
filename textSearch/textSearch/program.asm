@@ -7,7 +7,6 @@ Comment |
  Function: unsigned int search(char *text, char *pattern)
 
  Description:
- This 32-bit assembly function implements the Boyer-Moore (BM) 
  substring search algorithm for UTF-16 encoded text.
 
  Parameters:
@@ -16,11 +15,10 @@ Comment |
 
  Behavior:
    - The function searches for the first occurrence of the pattern in the text.
-   - It uses the Boyer-Moore algorithm to improve efficiency (e.g., using bad character shift).
    - The pattern and text are both processed as sequences of 16-bit characters.
 
  Return:
-   - If the pattern is found in the text, returns its 1-based index.
+   - If the pattern is found in the text, returns its 0-based index.
    - If the pattern is not found, returns -1 (0xFFFFFFFF).
 
  Notes:
