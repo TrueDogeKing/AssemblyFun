@@ -18,7 +18,7 @@ Comment |
    - The pattern and text are both processed as sequences of 16-bit characters.
 
  Return:
-   - If the pattern is found in the text, returns its 0-based index.
+   - If the pattern is found in the text, returns its 1-based index.
    - If the pattern is not found, returns -1 (0xFFFFFFFF).
 
  Notes:
@@ -67,7 +67,7 @@ inner_loop:
     cmp bx,word ptr [edi+2*ecx-2]
     jne next_outer
     loop inner_loop
-    ;calculate the esi now
+    inc eax
     jmp end_search
 
 next_outer:
