@@ -1,20 +1,20 @@
 #include <stdio.h>
 #include <stdint.h>
 
-// Prototyp funkcji zaimplementowanej w asemblerze
+// Prototype of the function implemented in assembly
 extern uint32_t get_RPK(char* PK);
 
-// Przyk³adowy klucz produktu (PK) — testowy, zgodny z formatem i tabel¹
-// Dla przyk³adu: FFFFF-GGGGG-HHHHH-JJJJJ-KKKKK
-// gdzie litery nale¿¹ do alfabetu 24-znakowego z zadania
+// Example Product Key (PK) — test key that follows the expected format and character set.
+// Format: FFFFF-GGGGG-HHHHH-JJJJJ-KKKKK
+// where characters come from a 24-character alphabet defined in the task
 int main() {
-    // Prawid³owy ci¹g znaków (25 znaków + 4 myœlniki = 29 znaków + 1 null terminator)
+    // Valid key string: 25 characters + 4 dashes = 29 characters + 1 null terminator
     char pk[] = "FFFFF-GGGGG-HHHHH-JJJJJ-KKKKK";
 
-    uint32_t rpk = get_RPK(pk);  // Wywo³anie funkcji asemblerowej
+    uint32_t rpk = get_RPK(pk);  // Call the assembly function
 
     printf("PK:  %s\n", pk);
-    printf("RPK: 0x%08X\n", rpk);  // Wyœwietlenie wyniku w postaci szesnastkowej
+    printf("RPK: 0x%08X\n", rpk);  // Display result in hexadecimal format
 
     return 0;
 }

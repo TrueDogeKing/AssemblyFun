@@ -10,9 +10,9 @@ int main() {
     unsigned int result = search(text, pattern);
 
     if (result != (unsigned int)-1)
-        printf("Znaleziono wzorzec na pozycji: %u\n", result);
+        printf("Pattern found at position: %u\n", result);
     else
-        printf("Nie znaleziono wzorca\n");
+        printf("Pattern not found\n");
 
     return 0;
 }

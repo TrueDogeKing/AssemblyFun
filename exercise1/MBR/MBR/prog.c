@@ -1,22 +1,22 @@
 #include <stdio.h>
 #include <stdint.h>
 
-
+// External function implemented in assembly
 extern int numerPartycjiAktywnej(void* MBR);
 
-
-void main()
+int main()
 {
-    uint8_t MBR[512] = { 0 };
+    uint8_t MBR[512] = { 0 };  // Simulated Master Boot Record (MBR)
 
-    MBR[ 16 * 1 + 0] = 0x80; // Ustawienie flagi aktywnej partycji (dla partycji nr 2)
+    // Set the "bootable" flag (0x80) for the 2nd partition (index 1)
+    MBR[16 * 1 + 0] = 0x80;
 
-    int nr = numerPartycjiAktywnej(MBR);
-    if (nr >= 0)
-        printf("Pierwsza aktywna partycja: %d\n", nr);
+    int partition = numerPartycjiAktywnej(MBR);
+
+    if (partition >= 0)
+        printf("First active partition: %d\n", partition);
     else
-        printf("Nie znaleziono aktywnej partycji.\n");
+        printf("No active partition found.\n");
 
     return 0;
-
 }
