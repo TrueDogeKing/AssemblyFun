@@ -1,22 +1,23 @@
 #include <stdio.h>
 
-extern void sortuj(long long liczby[], int n); // deklaracja funkcji asemblerowej
+// Declaration of the assembly sorting function
+extern void sortuj(long long numbers[], int n);
 
 int main() {
-    long long dane[] = { 9, -3, 17, 2, -8, 0 };
-    int n = sizeof(dane) / sizeof(dane[0]);
+    long long data[] = { 9, -3, 17, 2, -8, 0 };
+    int n = sizeof(data) / sizeof(data[0]);
 
-    printf("Przed sortowaniem:\n");
+    printf("Before sorting:\n");
     for (int i = 0; i < n; i++) {
-        printf("%lld ", dane[i]);
+        printf("%lld ", data[i]);
     }
     printf("\n");
 
-    sortuj(dane, n); // wywo³anie funkcji w asemblerze
+    sortuj(data, n); // Call the sorting function implemented in assembly
 
-    printf("Po sortowaniu:\n");
+    printf("After sorting:\n");
     for (int i = 0; i < n; i++) {
-        printf("%lld ", dane[i]);
+        printf("%lld ", data[i]);
     }
     printf("\n");
 
